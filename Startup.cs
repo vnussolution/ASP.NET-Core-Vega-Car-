@@ -23,6 +23,14 @@ namespace Vega {
         public void ConfigureServices (IServiceCollection services) {
             services.AddDbContext<AppDbContext> (options => options.UseSqlServer (Configuration.GetConnectionString ("DefaultConnection")));
 
+            // setup validation for registering new account
+            services.Configure<IdentityOptions> (options => {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = true;
+                options.User.RequireUniqueEmail = false;
+            });
+
             //add identity to service
             services.AddIdentity<IdentityUser, IdentityRole> ().AddEntityFrameworkStores<AppDbContext> ();
 

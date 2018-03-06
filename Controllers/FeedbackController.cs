@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Vega.Models.PieShop;
 using Vega.ViewModels;
 
 namespace Vega.Controllers {
+
+    [Authorize]
     public class FeedbackController : Controller {
 
         private readonly IFeedbackRepository _feedbackRepository;

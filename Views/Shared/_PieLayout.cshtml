@@ -1,3 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +21,22 @@
                     <li><a asp-controller="Home" asp-action="PieIndex" class="navbar-brand">Bethany's Pie Shop</a></li>
                     <li><a asp-controller="Feedback" asp-action="Index">Feedback</a></li>
                 </ul>
+                
+                @if(SignInManager.IsSignedIn(User))
+                {
+                    <form asp-controller="Account" asp-action="Logout" method="POST" class="navbar-right" id="logoutForm">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li> <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a> </li>
+                        </ul>
+                    </form>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li> <a id="registerLink" asp-controller="Account" asp-action="Register">Register</a>  </li>
+                        <li> <a id="loginLink" asp-controller="Account" asp-action="Login">Login</a>  </li>
+                    </ul>
+                }
             </div>
         </div>
     </nav>
