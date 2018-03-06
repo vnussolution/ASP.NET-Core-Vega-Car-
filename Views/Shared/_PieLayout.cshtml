@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+   
+    
+    <link href="~/PieShop/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/PieShop/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="PieIndex" class="navbar-brand">Bethany's Pie Shop</a></li>
+                    <li><a asp-controller="Feedback" asp-action="Index">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    @RenderBody()
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
