@@ -11,11 +11,11 @@ using Vega.ViewModels;
 namespace Vega.Controllers {
 
     [Authorize]
-    public class FeedbackController : Controller {
+    public class PieFeedbackController : Controller {
 
         private readonly IFeedbackRepository _feedbackRepository;
 
-        public FeedbackController (IFeedbackRepository feedbackRepository) {
+        public PieFeedbackController (IFeedbackRepository feedbackRepository) {
             _feedbackRepository = feedbackRepository;
         }
         public IActionResult Index () {

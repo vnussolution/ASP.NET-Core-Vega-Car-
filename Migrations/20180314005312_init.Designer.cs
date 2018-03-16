@@ -11,9 +11,10 @@ using Vega.Models;
 namespace Vega.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180314005312_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,44 +180,6 @@ namespace Vega.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Vega.Models.City.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("Vega.Models.City.POI", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CityId");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.ToTable("POI");
-                });
-
             modelBuilder.Entity("Vega.Models.Library.Author", b =>
                 {
                     b.Property<Guid>("Id")
@@ -354,14 +317,6 @@ namespace Vega.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Vega.Models.City.POI", b =>
-                {
-                    b.HasOne("Vega.Models.City.City", "City")
-                        .WithMany("POIs")
-                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

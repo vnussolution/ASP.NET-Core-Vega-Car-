@@ -8,34 +8,26 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Vega.Models;
+using Vega.Models.Library;
 using Vega.Models.PieShop;
 
 namespace Vega {
     public class Program {
         public static void Main (string[] args) {
-            // BuildWebHost (args).Run ();
-
-            // var host = BuildWebHost (args);
-
-            // using (var scope = host.Services.CreateScope ()) {
-            //     var services = scope.ServiceProvider;
-            //     try {
-            //         var context = services.GetRequiredService<AppDbContext> ();
-            //         DbInitializer.Seed (context);
-            //     } catch (Exception e) {
-            //         // log error
-            //         throw;
-            //     }
-            // }
-            // host.Run ();
-
             var host = BuildWebHost (args);
-
+            //seeding
             using (var scope = host.Services.CreateScope ()) {
                 var services = scope.ServiceProvider;
                 try {
                     var context = services.GetRequiredService<AppDbContext> ();
+
+                    //populate dummy data for Pie
                     DbInitializer.Seed (context);
+
+                    //populate the dummy data for library
+                    context.EnsureSeedLibraryDataForContext ();
+                    context.EnsureSeedCityDataForContext ();
                 } catch (Exception) {
                     //we could log this in a real-world situation
                 }
@@ -47,6 +39,7 @@ namespace Vega {
         public static IWebHost BuildWebHost (string[] args) =>
             WebHost.CreateDefaultBuilder (args)
             .UseStartup<Startup> ()
+            .UseUrls ("http://localhost:1028/")
             .Build ();
     }
 }

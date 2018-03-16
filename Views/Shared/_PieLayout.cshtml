@@ -19,7 +19,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="PieIndex" class="navbar-brand">Bethany's Pie Shop</a></li>
-                    <li><a asp-controller="Feedback" asp-action="Index">Feedback</a></li>
+                    <li><a asp-controller="PieFeedback" asp-action="Index">Feedback</a></li>
                 </ul>
                 
                 @if(SignInManager.IsSignedIn(User))
@@ -34,7 +34,7 @@
                 {
                     <ul class="nav navbar-nav navbar-right">
                         <li> <a id="registerLink" asp-controller="Account" asp-action="Register">Register</a>  </li>
-                        <li> <a id="loginLink" asp-controller="Account" asp-action="Login">Login</a>  </li>
+                        <li> <a id="loginLink" asp-controller="PieFeedback" asp-action="Index">Login</a>  </li>
                     </ul>
                 }
             </div>
